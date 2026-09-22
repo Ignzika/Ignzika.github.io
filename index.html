@@ -1,0 +1,1196 @@
+<!doctype html>
+<html lang="es" id="html-root">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fix #11: corregir lang ANTES de que el cuerpo se pinte, sin bloquear render -->
+    <script>
+      (function () {
+        var saved = localStorage.getItem("portfolio-lang");
+        if (saved === "en" || saved === "es") {
+          document.documentElement.lang = saved;
+        }
+      })();
+    </script>
+    <meta
+      name="description"
+      content="Portafolio personal de Ignacio Bustos Soto — Ingeniero de Software Full Stack, Chile"
+    />
+    <meta name="author" content="Ignacio Bustos Soto" />
+    <meta
+      name="keywords"
+      content="desarrollador, full stack, javascript, node, react, postgresql, chile, portafolio"
+    />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Ignacio Bustos Soto — Ingeniero de Software"
+    />
+    <meta
+      property="og:description"
+      content="Portafolio personal de Ignacio Bustos Soto, desarrollador Full Stack en Chile."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://Ignzika.github.io" />
+
+    <title>Ignacio Bustos Soto — Ingeniero de Software</title>
+
+    <!-- Google Fonts — non-render-blocking (media="print" trick)
+       Se carga de forma asíncrona: no bloquea el primer pintado.
+       Peso 500 eliminado: solo se usan 400, 600 y 700 en el CSS.
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      />
+    </noscript>
+
+    <link rel="stylesheet" href="css/style.css?v=1.2" />
+
+    <!-- Favicon SVG inline via data URI -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563EB'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='14' font-family='Inter,sans-serif' font-weight='700'>IB</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Skip to main content (accesibilidad teclado) -->
+    <a href="#main-content" class="skip-link" data-i18n="skip_link"
+      >Saltar al contenido principal</a
+    >
+
+    <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+    <header class="navbar" id="navbar" role="banner">
+      <nav class="nav-container" aria-label="Navegación principal">
+        <a href="#hero" class="nav-logo" aria-label="Inicio — Ignacio Bustos"
+          >IB</a
+        >
+
+        <ul class="nav-links" role="list">
+          <li><a href="#about" data-i18n="nav_about">Sobre mí</a></li>
+          <li>
+            <a href="#experience" data-i18n="nav_experience">Experiencia</a>
+          </li>
+          <li><a href="#education" data-i18n="nav_education">Educación</a></li>
+          <li><a href="#skills" data-i18n="nav_skills">Habilidades</a></li>
+          <li><a href="#projects" data-i18n="nav_projects">Proyectos</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button
+            class="lang-toggle"
+            id="langToggle"
+            aria-label="Cambiar idioma"
+          >
+            <span class="lang-option" id="langES">ES</span>
+            <span class="lang-sep">|</span>
+            <span class="lang-option" id="langEN">EN</span>
+          </button>
+          <button
+            class="burger"
+            id="burger"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="nav-links-mobile"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile menu -->
+      <div class="mobile-menu" id="nav-links-mobile" aria-hidden="true">
+        <ul role="list">
+          <li><a href="#about" data-i18n="nav_about">Sobre mí</a></li>
+          <li>
+            <a href="#experience" data-i18n="nav_experience">Experiencia</a>
+          </li>
+          <li><a href="#education" data-i18n="nav_education">Educación</a></li>
+          <li><a href="#skills" data-i18n="nav_skills">Habilidades</a></li>
+          <li><a href="#projects" data-i18n="nav_projects">Proyectos</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- ═══════════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════════ -->
+      <section class="hero" id="hero" aria-labelledby="hero-heading">
+        <div class="hero-content fade-in">
+          <p class="hero-greeting" data-i18n="hero_greeting">Hola, soy</p>
+          <h1 id="hero-heading" class="hero-name">Ignacio Bustos Soto</h1>
+          <p class="hero-title">
+            <span data-i18n="hero_title">Ingeniero de Software</span>
+            <span class="hero-separator"> · </span>
+            <span data-i18n="hero_subtitle">Full Stack Developer</span>
+            <span class="hero-separator"> · </span>
+            <span data-i18n="hero_cloud">AWS Cloud Practitioner</span>
+            <span class="hero-badge-wip" data-i18n="hero_wip">en proceso</span>
+          </p>
+          <p class="hero-location">
+            <svg
+              aria-hidden="true"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            Santiago, Chile
+          </p>
+          <div class="hero-cta">
+            <a
+              href="#projects"
+              class="btn btn-primary"
+              data-i18n="hero_cta_projects"
+              >Ver Proyectos</a
+            >
+            <a
+              href="#contact"
+              class="btn btn-outline"
+              data-i18n="hero_cta_contact"
+              >Contacto</a
+            >
+          </div>
+        </div>
+        <div class="hero-scroll" aria-hidden="true">
+          <span></span>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+         SOBRE MÍ
+    ═══════════════════════════════════════════ -->
+      <section class="section" id="about" aria-labelledby="about-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2
+              id="about-heading"
+              class="section-title"
+              data-i18n="about_title"
+            >
+              Sobre mí
+            </h2>
+            <div class="section-line" aria-hidden="true"></div>
+          </div>
+          <div class="about-grid">
+            <div class="about-avatar" aria-hidden="true">
+              <div class="avatar-placeholder">IB</div>
+            </div>
+            <div class="about-content">
+              <p class="about-text" data-i18n="about_p1">
+                Soy desarrollador Full Stack en búsqueda de nuevos retos
+                profesionales, con una base sólida y una gran pasión por la
+                tecnología. Mis estudios me han permitido adquirir habilidades
+                en programación y desarrollo web.
+              </p>
+              <p class="about-text" data-i18n="about_p2">
+                Mi experiencia como docente me proporcionó competencias como la
+                comunicación efectiva, trabajo en equipo y gestión de proyectos,
+                lo que me convierte en un candidato valioso para cualquier
+                equipo de desarrollo. Soy proactivo, curioso, autodidacta y con
+                un fuerte enfoque en el aprendizaje continuo.
+              </p>
+              <p class="about-text" data-i18n="about_p3">
+                Actualmente iniciando mi camino en cloud computing con AWS, con
+                conocimientos en los servicios fundamentales de la plataforma
+                (EC2, S3, IAM, RDS, Lambda), modelos de responsabilidad
+                compartida, seguridad básica y modelos de costo. En proceso de
+                obtener la certificación AWS Certified Cloud Practitioner
+                (CLF-C02).
+              </p>
+              <div class="about-stats">
+                <div class="stat">
+                  <span class="stat-number">5+</span>
+                  <span class="stat-label" data-i18n="stat_years"
+                    >Años de experiencia</span
+                  >
+                </div>
+                <div class="stat">
+                  <span class="stat-number">10+</span>
+                  <span class="stat-label" data-i18n="stat_techs"
+                    >Tecnologías</span
+                  >
+                </div>
+                <div class="stat">
+                  <span class="stat-number">5</span>
+                  <span class="stat-label" data-i18n="stat_certs"
+                    >Certificaciones</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+         EXPERIENCIA
+    ═══════════════════════════════════════════ -->
+      <section
+        class="section section-alt"
+        id="experience"
+        aria-labelledby="experience-heading"
+      >
+        <div class="container">
+          <div class="section-header">
+            <h2
+              id="experience-heading"
+              class="section-title"
+              data-i18n="exp_title"
+            >
+              Experiencia
+            </h2>
+            <div class="section-line" aria-hidden="true"></div>
+          </div>
+          <ol class="timeline" aria-label="Historial de experiencia laboral">
+            <li class="timeline-item">
+              <div class="timeline-marker" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-role" data-i18n="exp1_role">
+                    Ingeniero de Software
+                  </h3>
+                  <span class="timeline-date" data-i18n="exp1_date"
+                    >jul. 2026 – Presente</span
+                  >
+                </div>
+                <p class="timeline-company">
+                  <svg
+                    aria-hidden="true"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="2" y="7" width="20" height="14" rx="2" />
+                    <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+                  </svg>
+                  AVOS Tech · Chile
+                </p>
+                <p class="timeline-desc" data-i18n="exp1_desc">
+                  Soporte y desarrollo en Microsoft Dynamics 365. Participación
+                  en proyectos de ingeniería de software para clientes de la
+                  empresa.
+                </p>
+                <div class="timeline-tags">
+                  <span class="tag">Microsoft Dynamics 365</span>
+                  <span class="tag">Software Engineering</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="timeline-item">
+              <div class="timeline-marker" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-role" data-i18n="exp2_role">
+                    Pasantía — Test Automation Engineer
+                  </h3>
+                  <span class="timeline-date" data-i18n="exp2_date"
+                    >ago. 2025 – sep. 2025</span
+                  >
+                </div>
+                <p class="timeline-company">
+                  <svg
+                    aria-hidden="true"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="2" y="7" width="20" height="14" rx="2" />
+                    <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+                  </svg>
+                  Globant · Gran Santiago, Chile
+                </p>
+                <p class="timeline-desc" data-i18n="exp2_desc">
+                  Pasantía en automatización de pruebas, trabajando con
+                  herramientas de QA modernas como Playwright y Appium para
+                  pruebas E2E y mobile.
+                </p>
+                <div class="timeline-tags">
+                  <span class="tag">Playwright</span>
+                  <span class="tag">Appium</span>
+                  <span class="tag">Test Automation</span>
+                  <span class="tag">QA</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="timeline-item">
+              <div class="timeline-marker" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-role" data-i18n="exp3_role">
+                    Profesor de Ciencias
+                  </h3>
+                  <span class="timeline-date" data-i18n="exp3_date"
+                    >may. 2025 – ago. 2025</span
+                  >
+                </div>
+                <p class="timeline-company">
+                  <svg
+                    aria-hidden="true"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="2" y="7" width="20" height="14" rx="2" />
+                    <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+                  </svg>
+                  Centro Educacional Cardenal José María Caro · Santiago
+                </p>
+                <p class="timeline-desc" data-i18n="exp3_desc">
+                  Docencia en ciencias naturales. Planificación de clases,
+                  evaluaciones y gestión de documentación curricular.
+                </p>
+                <div class="timeline-tags">
+                  <span class="tag" data-i18n="tag_teaching">Docencia</span>
+                  <span class="tag" data-i18n="tag_planning"
+                    >Planificación</span
+                  >
+                </div>
+              </div>
+            </li>
+
+            <li class="timeline-item">
+              <div class="timeline-marker" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-role" data-i18n="exp4_role">
+                    Profesor Particular
+                  </h3>
+                  <span class="timeline-date" data-i18n="exp4_date"
+                    >mar. 2023 – ago. 2025</span
+                  >
+                </div>
+                <p class="timeline-company">
+                  <svg
+                    aria-hidden="true"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="2" y="7" width="20" height="14" rx="2" />
+                    <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+                  </svg>
+                  <span data-i18n="exp4_company">Autónomo</span>
+                </p>
+                <p class="timeline-desc" data-i18n="exp4_desc">
+                  Clases particulares de ciencias y tecnología. Durante este
+                  período también realicé el bootcamp de desarrollo Full Stack
+                  en Desafío Latam.
+                </p>
+                <div class="timeline-tags">
+                  <span class="tag" data-i18n="tag_freelance">Freelance</span>
+                  <span class="tag" data-i18n="tag_tutoring">Tutorías</span>
+                </div>
+              </div>
+            </li>
+
+            <li class="timeline-item">
+              <div class="timeline-marker" aria-hidden="true"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-role" data-i18n="exp5_role">
+                    Profesor de Ciencias — Secundaria
+                  </h3>
+                  <span class="timeline-date" data-i18n="exp5_date"
+                    >mar. 2020 – dic. 2022</span
+                  >
+                </div>
+                <p class="timeline-company">
+                  <svg
+                    aria-hidden="true"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="2" y="7" width="20" height="14" rx="2" />
+                    <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+                  </svg>
+                  Liceo Andrés Bello
+                </p>
+                <p class="timeline-desc" data-i18n="exp5_desc">
+                  Profesor de biología y ciencias naturales en educación
+                  secundaria. Comunicación efectiva, trabajo en equipo y
+                  organización de documentación académica.
+                </p>
+                <div class="timeline-tags">
+                  <span class="tag" data-i18n="tag_teaching">Docencia</span>
+                  <span class="tag" data-i18n="tag_communication"
+                    >Comunicación</span
+                  >
+                  <span class="tag">Biología</span>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+         EDUCACIÓN & CERTIFICACIONES
+    ═══════════════════════════════════════════ -->
+      <section
+        class="section"
+        id="education"
+        aria-labelledby="education-heading"
+      >
+        <div class="container">
+          <div class="section-header">
+            <h2
+              id="education-heading"
+              class="section-title"
+              data-i18n="edu_title"
+            >
+              Educación &amp; Certificaciones
+            </h2>
+            <div class="section-line" aria-hidden="true"></div>
+          </div>
+
+          <div class="edu-grid">
+            <article class="edu-card">
+              <div class="edu-icon" aria-hidden="true">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                </svg>
+              </div>
+              <div class="edu-info">
+                <h3 class="edu-degree" data-i18n="edu1_degree">
+                  Desarrollador Full Stack JavaScript
+                </h3>
+                <p class="edu-school">Desafío Latam</p>
+                <p class="edu-period" data-i18n="edu1_period">
+                  mar. 2023 – abr. 2024
+                </p>
+                <p class="edu-desc" data-i18n="edu1_desc">
+                  Desarrollo de páginas web, contenido digital/multimedia y
+                  recursos informáticos. Bootcamp intensivo Full Stack con
+                  JavaScript, Node.js, React y PostgreSQL.
+                </p>
+              </div>
+            </article>
+
+            <article class="edu-card">
+              <div class="edu-icon" aria-hidden="true">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                </svg>
+              </div>
+              <div class="edu-info">
+                <h3 class="edu-degree" data-i18n="edu2_degree">
+                  Profesor de Biología y Ciencias Naturales
+                </h3>
+                <p class="edu-school">Universidad Central de Chile</p>
+                <p class="edu-period" data-i18n="edu2_period">
+                  mar. 2008 – ene. 2013
+                </p>
+                <p class="edu-desc" data-i18n="edu2_desc">
+                  Licenciatura en Educación con mención en Biología y Ciencias
+                  Naturales. Formación en pedagogía, comunicación y gestión
+                  educativa.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="certs-section">
+            <h3 class="certs-title" data-i18n="certs_title">Certificaciones</h3>
+            <ul
+              class="certs-list"
+              role="list"
+              aria-label="Lista de certificaciones"
+            >
+              <li class="cert-badge">
+                <svg
+                  aria-hidden="true"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="8" r="6" />
+                  <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                </svg>
+                React II
+              </li>
+              <li class="cert-badge">
+                <svg
+                  aria-hidden="true"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="8" r="6" />
+                  <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                </svg>
+                Full Stack JavaScript
+              </li>
+              <li class="cert-badge">
+                <svg
+                  aria-hidden="true"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="8" r="6" />
+                  <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                </svg>
+                CSS
+              </li>
+              <li class="cert-badge">
+                <svg
+                  aria-hidden="true"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="8" r="6" />
+                  <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                </svg>
+                Node.js &amp; Express.js
+              </li>
+              <li class="cert-badge">
+                <svg
+                  aria-hidden="true"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="8" r="6" />
+                  <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                </svg>
+                PostgreSQL
+              </li>
+              <li class="cert-badge cert-badge-wip">
+                <svg
+                  aria-hidden="true"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                  />
+                </svg>
+                <span data-i18n="cert_aws"
+                  >AWS Cloud Practitioner (CLF-C02)</span
+                >
+                — <span data-i18n="hero_wip">en proceso</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+         HABILIDADES
+    ═══════════════════════════════════════════ -->
+      <section
+        class="section section-alt"
+        id="skills"
+        aria-labelledby="skills-heading"
+      >
+        <div class="container">
+          <div class="section-header">
+            <h2
+              id="skills-heading"
+              class="section-title"
+              data-i18n="skills_title"
+            >
+              Habilidades
+            </h2>
+            <div class="section-line" aria-hidden="true"></div>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-group">
+              <h3 class="skill-group-title" data-i18n="skills_frontend">
+                Frontend
+              </h3>
+              <ul class="skill-tags" role="list">
+                <li class="skill-tag">HTML5</li>
+                <li class="skill-tag">CSS3</li>
+                <li class="skill-tag">JavaScript</li>
+                <li class="skill-tag">React</li>
+                <li class="skill-tag">Responsive Design</li>
+              </ul>
+            </div>
+
+            <div class="skill-group">
+              <h3 class="skill-group-title" data-i18n="skills_backend">
+                Backend
+              </h3>
+              <ul class="skill-tags" role="list">
+                <li class="skill-tag">Node.js</li>
+                <li class="skill-tag">Express.js</li>
+                <li class="skill-tag">PostgreSQL</li>
+                <li class="skill-tag">REST APIs</li>
+                <li class="skill-tag">JWT Auth</li>
+              </ul>
+            </div>
+
+            <div class="skill-group">
+              <h3 class="skill-group-title" data-i18n="skills_qa">
+                QA &amp; Testing
+              </h3>
+              <ul class="skill-tags" role="list">
+                <li class="skill-tag">Playwright</li>
+                <li class="skill-tag">Appium</li>
+                <li class="skill-tag">Postman</li>
+                <li class="skill-tag">E2E Testing</li>
+                <li class="skill-tag">API Testing</li>
+              </ul>
+            </div>
+
+            <div class="skill-group">
+              <h3 class="skill-group-title" data-i18n="skills_tools">
+                Herramientas
+              </h3>
+              <ul class="skill-tags" role="list">
+                <li class="skill-tag">Git</li>
+                <li class="skill-tag">GitHub</li>
+                <li class="skill-tag">VS Code</li>
+                <li class="skill-tag">Microsoft Dynamics 365</li>
+                <li class="skill-tag">Linux</li>
+              </ul>
+            </div>
+
+            <div class="skill-group">
+              <h3 class="skill-group-title" data-i18n="skills_soft">
+                Habilidades Blandas
+              </h3>
+              <ul class="skill-tags" role="list">
+                <li class="skill-tag" data-i18n="soft_communication">
+                  Comunicación efectiva
+                </li>
+                <li class="skill-tag" data-i18n="soft_teamwork">
+                  Trabajo en equipo
+                </li>
+                <li class="skill-tag" data-i18n="soft_selflearning">
+                  Autodidacta
+                </li>
+                <li class="skill-tag" data-i18n="soft_proactive">
+                  Proactividad
+                </li>
+                <li class="skill-tag" data-i18n="soft_docs">
+                  Gestión de documentación
+                </li>
+              </ul>
+            </div>
+
+            <div class="skill-group">
+              <h3 class="skill-group-title" data-i18n="skills_cloud">
+                Cloud (AWS)
+              </h3>
+              <ul class="skill-tags" role="list">
+                <li class="skill-tag">EC2 · S3 · IAM</li>
+                <li class="skill-tag">RDS · Lambda</li>
+                <li class="skill-tag">VPC</li>
+                <li class="skill-tag" data-i18n="skill_shared_resp">
+                  Responsabilidad compartida
+                </li>
+                <li class="skill-tag" data-i18n="skill_cloud_cost">
+                  Modelos de costo
+                </li>
+                <li class="skill-tag skill-tag-wip">
+                  <span data-i18n="cert_aws">AWS Cloud Practitioner</span>
+                  <span data-i18n="hero_wip">en proceso</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+         PROYECTOS
+    ═══════════════════════════════════════════ -->
+      <section class="section" id="projects" aria-labelledby="projects-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2
+              id="projects-heading"
+              class="section-title"
+              data-i18n="proj_title"
+            >
+              Proyectos
+            </h2>
+            <div class="section-line" aria-hidden="true"></div>
+          </div>
+          <div class="projects-grid">
+            <article class="project-card">
+              <div class="project-card-header">
+                <svg
+                  class="project-icon"
+                  aria-hidden="true"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M3 3h18v18H3z" rx="2" />
+                  <path d="M3 9h18M9 21V9" />
+                </svg>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/Ignzika/ADL_Test_API"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver ADL Test API en GitHub"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <h3 class="project-name">ADL Test API</h3>
+              <p class="project-desc" data-i18n="proj1_desc">
+                Suite de pruebas de API usando Postman para el programa de
+                formación ADL Test Automation Engineer. Incluye colecciones de
+                tests, variables de entorno y reportes.
+              </p>
+              <div class="project-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Postman</span>
+                <span class="tag">API Testing</span>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card-header">
+                <svg
+                  class="project-icon"
+                  aria-hidden="true"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M3 3h18v18H3z" rx="2" />
+                  <path d="M3 9h18M9 21V9" />
+                </svg>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/Ignzika/ADL_TEST_FRONT"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver ADL Test Front en GitHub"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <h3 class="project-name">ADL Test Front</h3>
+              <p class="project-desc" data-i18n="proj2_desc">
+                Pruebas de frontend automatizadas con Playwright para el
+                programa ADL Test Automation Engineer. Tests E2E sobre
+                interfaces web reales.
+              </p>
+              <div class="project-tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">Playwright</span>
+                <span class="tag">E2E Testing</span>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card-header">
+                <svg
+                  class="project-icon"
+                  aria-hidden="true"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M3 3h18v18H3z" rx="2" />
+                  <path d="M3 9h18M9 21V9" />
+                </svg>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/Ignzika/adl-playwright-practica"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver Playwright Práctica en GitHub"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <h3 class="project-name">Playwright E2E Practice</h3>
+              <p class="project-desc" data-i18n="proj3_desc">
+                Repositorio de pruebas end-to-end con Playwright. Implementación
+                de patrones POM (Page Object Model) y buenas prácticas de
+                automatización de QA.
+              </p>
+              <div class="project-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">Playwright</span>
+                <span class="tag">POM</span>
+                <span class="tag">QA</span>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card-header">
+                <svg
+                  class="project-icon"
+                  aria-hidden="true"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M3 3h18v18H3z" rx="2" />
+                  <path d="M3 9h18M9 21V9" />
+                </svg>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/Ignzika/backend-mod2-API-REST"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver Backend API REST en GitHub"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <h3 class="project-name">Backend API REST</h3>
+              <p class="project-desc" data-i18n="proj4_desc">
+                API RESTful construida con Node.js y Express. Implementación de
+                endpoints CRUD, manejo de rutas, middlewares y conexión a base
+                de datos.
+              </p>
+              <div class="project-tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">Express</span>
+                <span class="tag">REST API</span>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-card-header">
+                <svg
+                  class="project-icon"
+                  aria-hidden="true"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M3 3h18v18H3z" rx="2" />
+                  <path d="M3 9h18M9 21V9" />
+                </svg>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/Ignzika/backend-mod2-desafio-LikeMe"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Ver LikeMe en GitHub"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <h3 class="project-name">LikeMe — Fullstack App</h3>
+              <p class="project-desc" data-i18n="proj5_desc">
+                Aplicación fullstack con sistema de likes. Frontend dinámico,
+                backend con Node.js + Express y base de datos PostgreSQL.
+                Operaciones CRUD completas.
+              </p>
+              <div class="project-tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">Fullstack</span>
+              </div>
+            </article>
+
+            <!-- Card "Ver más" -->
+            <article class="project-card project-card-more">
+              <div class="project-more-content">
+                <svg
+                  aria-hidden="true"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                <p data-i18n="proj_more">Ver más proyectos en GitHub</p>
+                <a
+                  href="https://github.com/Ignzika"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-outline"
+                  data-i18n="proj_github_btn"
+                  >Ver perfil</a
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════
+         CONTACTO
+    ═══════════════════════════════════════════ -->
+      <section
+        class="section section-dark"
+        id="contact"
+        aria-labelledby="contact-heading"
+      >
+        <div class="container">
+          <div class="section-header">
+            <h2
+              id="contact-heading"
+              class="section-title"
+              data-i18n="contact_title"
+            >
+              Contacto
+            </h2>
+            <div
+              class="section-line section-line-light"
+              aria-hidden="true"
+            ></div>
+          </div>
+          <p class="contact-intro" data-i18n="contact_intro">
+            ¿Tienes un proyecto en mente o quieres trabajar juntos? No dudes en
+            escribirme.
+          </p>
+          <div class="contact-links">
+            <a
+              href="mailto:ignacio.bustos@hotmail.es"
+              class="contact-card"
+              aria-label="Enviar email a ignacio.bustos@hotmail.es"
+            >
+              <div class="contact-icon">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                >
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M2 7l10 7 10-7" />
+                </svg>
+              </div>
+              <div class="contact-info">
+                <span class="contact-label">Email</span>
+                <span class="contact-value">ignacio.bustos@hotmail.es</span>
+              </div>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/ignacio-bustos-soto"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-card"
+              aria-label="Visitar perfil de LinkedIn de Ignacio Bustos"
+            >
+              <div class="contact-icon">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="4" />
+                  <path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 014 0v4M11 13v4" />
+                </svg>
+              </div>
+              <div class="contact-info">
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-value">ignacio-bustos-soto</span>
+              </div>
+            </a>
+
+            <a
+              href="https://github.com/Ignzika"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-card"
+              aria-label="Visitar perfil de GitHub de Ignzika"
+            >
+              <div class="contact-icon">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+              </div>
+              <div class="contact-info">
+                <span class="contact-label">GitHub</span>
+                <span class="contact-value">github.com/Ignzika</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <p>
+          <span data-i18n="footer_made">Hecho con</span>
+          <span aria-label="amor" role="img">♥</span>
+          <span data-i18n="footer_by">por</span>
+          <strong>Ignacio Bustos Soto</strong>
+          · <span id="footer-year"></span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/i18n.js?v=1.2"></script>
+    <script src="js/main.js?v=1.2"></script>
+  </body>
+</html>
